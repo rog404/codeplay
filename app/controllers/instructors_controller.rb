@@ -11,9 +11,9 @@ class InstructorsController < ApplicationController
     end
 
     def create
-        @instructor = Instructor.new user_params
+        @instructor = Instructor.new instructor_params
         @instructor.save
-        redirect_to instructors_path
+        redirect_to @instructor
     end
 
     def edit
@@ -22,7 +22,7 @@ class InstructorsController < ApplicationController
 
     def update
         @instructor = Instructor.find params[:id]
-        @instructor.update user_params
+        @instructor.update instructor_params
     end
 
     def destroy
@@ -31,7 +31,8 @@ class InstructorsController < ApplicationController
         redirect_to instructors_path
     end
 
-    def user_params
-        params.require(:instructor).permit :name, :email, :bio
+    private
+    def instructor_params
+        params.require(:instructor).permit :name, :email, :bio, :profile_picture
     end
 end
