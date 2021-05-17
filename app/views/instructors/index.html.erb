@@ -1,0 +1,15 @@
+<% if @instructors.blank? %>
+    <p>Nenhum instrutor disponível<p>
+<% end %>
+
+<%= link_to "Adicionar instrutor", new_instructor_path %>
+
+<% @instructors.each do |instructor| %>
+  <h1><%= link_to instructor.name, instructor %></h1>
+  <p><%= instructor.email %></p>
+  <p><%= instructor.bio %></p>
+  <p><%= link_to "Editar", edit_instructor_path(instructor) %></p>
+  <p><%= link_to "Apagar", instructor_path(instructor), method: :delete, data: { confirm: 'Deseja mesmo apagar?'} %></p>
+<% end %>
+
+<p><%= link_to "Voltar", root_path %></p>
