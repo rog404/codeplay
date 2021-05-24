@@ -13,14 +13,26 @@ describe Course do
     end
 
     it 'code must be uniq' do
+      instructor = Instructor.create!(name: 'Fulano Sicrano',
+                                      email: 'fulano@codeplay.com.br')
       Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
-                    code: 'RUBYBASIC', price: 10,
-                    enrollment_deadline: '22/12/2033')
+                      code: 'RUBYBASIC', price: 10,
+                      enrollment_deadline: '22/12/2033', instructor: instructor)
       course = Course.new(code: 'RUBYBASIC')
 
       course.valid?
 
       expect(course.errors[:code]).to include('já está em uso')
+    end
+
+    it 'and default image must be attached' do
+      instructor = Instructor.create!(name: 'Fulano Sicrano',
+                                      email: 'fulano@codeplay.com.br')
+      course = Course.create!(name: 'Ruby', description: 'Um curso de Ruby',
+                              code: 'RUBYBASIC', price: 10,
+                              enrollment_deadline: '22/12/2033', instructor: instructor)
+
+        expect(course.banner.attached?).to be true
     end
   end
 end

@@ -1,0 +1,38 @@
+<% if course.errors.any?%>
+    <p>Não foi possível salvar</p>
+<% end %>
+
+<%= form_with model: course do |f| %>
+    <%= f.label :name, 'Nome do Curso' %>
+    <%= f.text_field :name %>
+    <% course.errors.full_messages_for(:name).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+    <%= f.label :description %>
+    <%= f.text_area :description %>
+    <% course.errors.full_messages_for(:description).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+    <%= f.label :code %>
+    <%= f.text_field :code %>
+    <% course.errors.full_messages_for(:code).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+    <%= f.label :price %>
+    <%= f.text_field :price %>
+    <% course.errors.full_messages_for(:price).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+    <%= f.label :enrollment_deadline %>
+    <%= f.date_field :enrollment_deadline %>
+    <% course.errors.full_messages_for(:enrollment_deadline).each do |message| %>
+        <div><%= message %></div>
+    <% end %>
+    <%= f.label :instructor_id, 'Instrutor(a)' %>
+    <%= collection_select :instructor_id, instructors, :id, :display_name %>
+    <%= f.label :banner %>
+    <%= f.file_field :banner %>
+    <%= f.submit %>
+<% end %>
+
+<p><%= link_to t('.back_button'), courses_path %></p>

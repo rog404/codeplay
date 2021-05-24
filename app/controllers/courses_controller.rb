@@ -1,32 +1,48 @@
 class CoursesController < ApplicationController
+    before_action :set_course, only: %i[show edit update destroy]
+
     def index
         @courses = Course.all
     end
 
     def show
-        @course = Course.find params[:id]
     end
 
     def new
+        @instructors = Instructor.all
+        @course = Course.new
     end
 
     def create
         @course = Course.new course_params
-        @course.save
-        redirect_to @course
+        if @course.save
+            redirect_to @course
+        else
+            @instructors = Instructor.all
+            render :new
+        end
+        
     end
 
     def edit
-        @course = Course.find params[:id]
     end
 
     def update
-        @course = Course.find params[:id]
         @course.update course_params
+        redirect_to @course, notice: t('.success')
+    end
+
+    def destroy
+        @course.destroy
+        redirect_to courses_path, notice: t('.success')
     end
 
     private
+    def set_course
+        @course = Course.find params[:id]
+    end
+
     def course_params
-        params.require(:course).permit :name, :description, :code, :price, :enrollment_deadline
+        params.require(:course).permit :name, :description, :code, :price, :enrollment_deadline, :banner, :instructor_id
     end
 end
