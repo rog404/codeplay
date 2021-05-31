@@ -5,5 +5,5 @@
     <dt>Bio</dt>
     <dd><%= @instructor.bio %></dd>
 </dl>
-
+<%= link_to 'Apagar', @instructor, method: :delete %>
 <p><%= link_to "Voltar", instructors_path %></p>

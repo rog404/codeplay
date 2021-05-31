@@ -1,5 +1,14 @@
 require 'rails_helper'
 
-RSpec.describe User, type: :model do
-  pending "add some examples to (or delete) #{__FILE__}"
+describe User do
+  context 'validation' do
+    it 'email must be uniq' do
+      User.create!(email: 'jane@test.com.br', password: '123456')
+
+      user = User.create(email: 'jane@test.com.br', password: '123456')
+      user.valid?
+
+      expect(user.errors[:email]).to include('já está em uso')
+    end
+  end
 end
