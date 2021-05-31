@@ -5,12 +5,13 @@ pt-BR:
       edit_button: Editar
       delete_button: Apagar
       back_button: Voltar
+      empty: 'Esse curso ainda não tem aulas cadastradas'
+    form:
+      back_button: Voltar
     new:
       title: Registrar um curso
-      back_button: Voltar
     edit:
       title: Atualizar um curso
-      back_button: Voltar
     update:
       success: Curso atualizado com sucesso
     destroy:

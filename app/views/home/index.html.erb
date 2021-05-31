@@ -1,5 +1,14 @@
 <h1>Codeplay</h1>
 <h3>Boas vindas ao sistema de gestão de cursos e aulas</h3>
-<%= link_to "Cursos", courses_path %>
-<%= link_to "Instrutores", instructors_path %>
 
+<%= link_to 'Cursos', courses_path %>
+<% if user_signed_in? %>
+  <%= link_to 'Instrutores', instructors_path %>
+<% end %>
+
+<h3>Cursos Disponíveis</h3>
+<% @courses.each do |c| %>
+  <%= link_to c.name, c %>
+  <p><%= c.description %></p>
+  <p><%= number_to_currency c.price %></p>
+<% end %>

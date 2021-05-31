@@ -6,7 +6,8 @@ describe 'Admin view instructors' do
         bio: 'Bacharel em Matematica')
     Instructor.create!(name: 'Tiago', email: 'tiago@email.com',
                    bio: 'Bacharel em Portugues')
-
+    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    login_as user, scope: :user
     visit root_path
     click_on 'Instrutores'
 
@@ -20,6 +21,8 @@ describe 'Admin view instructors' do
         bio: 'Bacharel em Matematica')
     Instructor.create!(name: 'Tiago', email: 'tiago@email.com',
                    bio: 'Bacharel em Portugues')
+    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    login_as user, scope: :user
 
 
     visit root_path
@@ -32,6 +35,8 @@ describe 'Admin view instructors' do
   end
 
   it 'and no instructor is available' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    login_as user, scope: :user
     visit root_path
     click_on 'Instrutores'
 
@@ -39,6 +44,8 @@ describe 'Admin view instructors' do
   end
 
   it 'and return to home page' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    login_as user, scope: :user
     Instructor.create!(name: 'Rogerio', email: 'rogerio@email.com',
         bio: 'Bacharel em Matematica')
 
@@ -50,6 +57,8 @@ describe 'Admin view instructors' do
   end
 
   it 'and return to promotions page' do
+    user = User.create!(email: 'jane@test.com.br', password: '123456')
+    login_as user, scope: :user
     Instructor.create!(name: 'Rogerio', email: 'rogerio@email.com',
         bio: 'Bacharel em Matematica')
 

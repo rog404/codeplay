@@ -4,6 +4,7 @@ class Course < ApplicationRecord
 
     has_one_attached :banner
     belongs_to :instructor
+    has_many :lessons
 
     after_commit :attach_default_banner, on: [:create, :update]
 
